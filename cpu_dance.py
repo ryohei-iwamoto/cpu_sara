@@ -24,7 +24,7 @@ class CpuDancer:
 
         # 背景除去済みフレームを読み込み
         self.frames = []
-        self.display_height = 100
+        self.display_height = 125
         self.fps = 30
         self._load_frames()
 
