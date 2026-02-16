@@ -98,15 +98,14 @@ class CpuDancer:
 
     def _get_speed_multiplier(self):
         """CPU使用率に応じた速度倍率を返す
-        0%   -> 0.3x (ゆっくり)
-        25%  -> 1.0x (通常)
-        100% -> 3.0x (超高速)
+        0~15%  -> 1.0x (通常)
+        15~100% -> 1.0x ~ 3.0x
         """
         cpu = self.cpu_percent
-        if cpu <= 25:
-            return 0.3 + (cpu / 25) * 0.7  # 0.3 ~ 1.0
+        if cpu <= 15:
+            return 1.0
         else:
-            return 1.0 + ((cpu - 25) / 75) * 3.0  # 1.0 ~ 3.0
+            return 1.0 + ((cpu - 15) / 85) * 2.0  # 1.0 ~ 3.0
 
     def _update_cpu(self):
         """CPU使用率をリアルタイムで更新"""
